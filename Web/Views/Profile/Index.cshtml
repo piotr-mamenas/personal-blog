@@ -1,0 +1,49 @@
+﻿@model PersonalBlog.Web.ViewModels.ProfileViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <strong class="label label-primary pull-right">Edit Profile <span class="fa fa-user"></span></strong>
+</div>
+    @using (Html.BeginForm("SaveProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal row center-block", @style = "padding:15px;" }))
+    {
+        <fieldset>
+            @Html.HiddenFor(model => Model.Id)
+            @Html.HiddenFor(model => Model.User.Id)
+            <div class="form-group spacer-2">
+                @Html.LabelFor(model => Model.FirstName, new {@class="label label-primary"})
+                @Html.TextBoxFor(model => Model.FirstName, new {@class="form-control"})
+            </div>
+            <div class="form-group spacer-2">
+                @Html.LabelFor(model => Model.LastName, new {@class= "label label-primary" })
+                @Html.TextBoxFor(model => Model.LastName, new {@class="form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => Model.AuthorDescription, new {@class= "label label-primary" })
+                @Html.TextAreaFor(model => Model.AuthorDescription, new {@class = "form-control"})
+            </div>
+            <div class="form-group pull-right">
+                <input type="submit" class="btn btn-primary" value="Save"/>
+            </div>
+        </fieldset>
+    }
+    @if (ViewBag.Error != null)
+    {
+    <div class="form-group alert alert-danger font-8">
+        @Html.Raw(ViewBag.Error)
+    </div>
+    }
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            $('#AuthorDescription').summernote({
+                height: 400,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+            });
+        });
+    </script>
+}

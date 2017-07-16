@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Web"
+                   namespace="PersonalBlog.Web.Core.Domain">
+
+  <class name="Post" table="POST">
+    <id name="PostId" column="POST_ID" >
+      <generator class="native" />
+    </id>
+    <property name="PostTitle" column="POST_NAME" />
+    <property name="PostBody" column="POST_BODY" />
+    <property name="PostDate" column="POST_DATE" />
+    <many-to-one name="User"
+                 unique="true"
+                 class="User">
+      <column name="USER_ID"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

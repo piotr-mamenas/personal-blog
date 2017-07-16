@@ -1,0 +1,64 @@
+﻿.spacer-1 {
+    margin: 0; padding: 0; height: 50px;
+}
+
+.spacer-2 {
+    margin: 0;
+    padding: 0;
+    height: 100px;
+}
+
+.spacer-4 {
+    margin: 0;
+    padding: 0;
+    height: 200px;
+}
+
+.spacer-8 {
+    margin: 0;
+    padding: 0;
+    height: 400px;
+}
+
+.font-6 {
+    font-size: 6px;
+}
+
+.font-8 {
+    font-size: 8px;
+}
+
+.font-10 {
+    font-size: 12px;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.font-14 {
+    font-size: 12px;
+}
+
+#LoginView {
+    margin-top: 100px;
+}
+
+#HomeView {
+    width: 100%;
+}
+
+input[type=text] {
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+
+input[type=text]:focus {
+    zoom: 1;
+    filter: alpha(opacity=100);
+    -ms-opacity: 1;
+    opacity: 1;
+}

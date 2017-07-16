@@ -1,0 +1,31 @@
+﻿<div class="navbar-inverse navbar-collapse">
+    <ul class="nav navbar-nav">
+        <li>
+            <a href="@Url.Action("Index", "Home")">
+                <span class="fa fa-home"></span> Home
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Profile")">
+                <span class="fa fa-user"></span> Profile
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Post")">
+                <span class="fa fa-clipboard"></span> Post Control
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Tag")">
+                <span class="fa fa-hashtag"></span> Tag Control
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Home")">
+                <span class="fa fa-search"></span> Search
+            </a>
+        </li>
+    </ul>
+    @Html.Partial("_NavbarAuth")
+</div>
+

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width"/>
+        <title>_Layout</title>
+        @Styles.Render("~/Style/Vendor")
+    </head>
+    <body background="~/Content/images/site-background.jpg">
+        @RenderPage("~/Views/Shared/_NavbarAdmin.cshtml")
+        <div class="container">
+            <div class="row" style="margin-top: 20px;">
+                <div id="HomeView">
+                    <div class="col-md-10 center-block">@RenderBody()</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+@Scripts.Render("~/Script/Jquery")
+@Scripts.Render("~/Script/Vendor")
+@RenderSection("scripts", false)

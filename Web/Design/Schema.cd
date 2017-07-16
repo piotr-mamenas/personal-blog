@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PersonalBlog.Web.Core.Domain.Post">
+    <Position X="8" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABEAAAAAAAAAAgAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Domain\Post.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PersonalBlog.Web.Core.Domain.Profile">
+    <Position X="5.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAg=</HashCode>
+      <FileName>Core\Domain\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PersonalBlog.Web.Core.Domain.Authentication.User">
+    <Position X="10.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAACAAAgAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Domain\Authentication\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Web"
+                   namespace="PersonalBlog.Web.Core.Domain">
+
+  <class name="User" table="USR">
+    <id name="Id" column="USER_ID" >
+      <generator class="native" />
+    </id>
+    <property name="Username" column="USR_USERNAME" />
+    <property name="Email" column="USR_EMAIL" />
+    <property name="PasswordHash" column="USR_PASSWORD" />
+
+    <one-to-one name="Author"
+                class="Author"
+                foreign-key="none" />
+    <one-to-one name="Post"
+                class="Post"
+                foreign-key="none" />
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Web"
+                   namespace="PersonalBlog.Web.Core.Domain">
+
+  <class name="Author" table="AUTHOR">
+    <id name="Id" column="AUTHOR_ID" >
+      <generator class="native" />
+    </id>
+    <property name="FirstName" column="AUTHOR_FIRST_NAME" />
+    <property name="LastName" column="AUTHOR_LAST_NAME" />
+    <property name="AuthorDescription" column="AUTHOR_DESCRIPTION" />
+    <many-to-one name="User" 
+                 unique="true" 
+                 class="User">
+      <column name="USER_ID"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

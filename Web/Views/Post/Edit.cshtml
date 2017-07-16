@@ -1,0 +1,50 @@
+﻿@model PersonalBlog.Web.ViewModels.PostViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <strong class="label label-primary pull-right">Edit Post <span class="fa fa-clipboard"></span></strong>
+</div>
+@Html.AntiForgeryToken()
+@using (Html.BeginForm("Edit","Post",FormMethod.Post, new {@class="form-horizontal row center-block", @style="padding:15px;"}))
+{
+    <fieldset>
+        @Html.HiddenFor(model => Model.PostId)
+        @Html.HiddenFor(model => Model.PostDate)
+        @Html.HiddenFor(model => Model.User)
+        <div class="form-group">
+            @Html.LabelFor(model => Model.PostTitle, new { @class = "label label-primary" })
+            @Html.TextBoxFor(model => Model.PostTitle, new {@class = "form-control"})
+            @Html.ValidationMessageFor(model => Model.PostTitle, null, new { @class = "label label-primary pull-right" })
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => Model.PostBody, new { @class = "label label-primary" })
+            @Html.TextAreaFor(model => Model.PostBody, new {@class = "form-control"})
+        </div>
+        <div class="form-group pull-right">
+            <input name="action" type="submit" class="btn btn-default" value="Back" />
+            <input id="SavePost" name="action" type="submit" class="btn btn-primary" value="Save"/>
+        </div>
+    </fieldset>
+}
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            $('#PostBody').summernote({
+                height: 300,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+        });
+        });
+
+        $(document).keypress(function(e){
+            if (e.which == 13){
+                $("#SavePost").click();
+            }
+        });
+    </script>
+}
