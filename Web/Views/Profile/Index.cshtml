@@ -1,4 +1,5 @@
-﻿@model PersonalBlog.Web.ViewModels.ProfileViewModel
+﻿@using PersonalBlog.Web.Enums
+@model PersonalBlog.Web.ViewModels.ProfileViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -14,26 +15,37 @@
             <div class="form-group spacer-2">
                 @Html.LabelFor(model => Model.FirstName, new {@class="label label-primary"})
                 @Html.TextBoxFor(model => Model.FirstName, new {@class="form-control"})
+                @Html.ValidationMessageFor(model => Model.FirstName, null, new { @class = "label label-primary pull-right" })
             </div>
             <div class="form-group spacer-2">
                 @Html.LabelFor(model => Model.LastName, new {@class= "label label-primary" })
                 @Html.TextBoxFor(model => Model.LastName, new {@class="form-control"})
+                @Html.ValidationMessageFor(model => Model.LastName, null, new { @class = "label label-primary pull-right" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => Model.AuthorDescription, new {@class= "label label-primary" })
                 @Html.TextAreaFor(model => Model.AuthorDescription, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => Model.AuthorDescription, null, new { @class = "label label-primary pull-right" })
             </div>
             <div class="form-group pull-right">
-                <input type="submit" class="btn btn-primary" value="Save"/>
+                <input id="Save" type="submit" class="btn btn-primary" value="Save"/>
             </div>
         </fieldset>
     }
-    @if (ViewBag.Error != null)
+<div class="row center-block font-10">
+    @if (ViewBag.Result != null && ViewBag.Result == ReturnCode.Error)
     {
-    <div class="form-group alert alert-danger font-8">
-        @Html.Raw(ViewBag.Error)
-    </div>
+        <div class="alert alert-danger">
+            @Html.Raw(ViewBag.Error)
+        </div>
     }
+    @if (ViewBag.Result != null && ViewBag.Result == ReturnCode.Success)
+    {
+        <div class="alert alert-success">
+            @Html.Raw("Profile Modified Successfully")
+        </div>
+    }
+</div>
 
 @section scripts {
     <script>
@@ -44,6 +56,12 @@
                 maxHeight: null,
                 focus: true
             });
+        });
+
+        $(document).keypress(function(e){
+            if (e.which == 13){
+                $("#Save").click();
+            }
         });
     </script>
 }

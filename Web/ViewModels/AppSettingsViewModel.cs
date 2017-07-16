@@ -1,9 +1,22 @@
-﻿namespace PersonalBlog.Web.ViewModels
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Drawing;
+using System.Web;
+
+namespace PersonalBlog.Web.ViewModels
 {
     public class AppSettingsViewModel
     {
-        public int Id { get; set; }
-        public string Key { get; set; }
-        public string Value { get; set; }
+        [Required]
+        [DisplayName("Application Name")]
+        public string AppName { get; set; }
+
+        [Required]
+        [DisplayName("Connection String")]
+        public string ConnectionString { get; set; }
+
+        [Required]
+        [DisplayName("Website Background Image")]
+        public HttpPostedFileBase BackgroundImage { get; set; }
     }
 }

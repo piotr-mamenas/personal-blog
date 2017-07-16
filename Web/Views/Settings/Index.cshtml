@@ -1,0 +1,61 @@
+﻿@using PersonalBlog.Web.Enums
+@model PersonalBlog.Web.ViewModels.AppSettingsViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <strong class="label label-primary pull-right">Application Settings <span class="fa fa-cog"></span></strong>
+</div>
+@using (Html.BeginForm("Save", "Settings", FormMethod.Post, new {@class = "form-horizontal"}))
+{
+    <fieldset>
+        <div class="form-group spacer-2">
+            @Html.LabelFor(model => Model.AppName, new { @class = "label label-primary" })
+            @Html.TextBoxFor(model => Model.AppName, new {@class = "form-control" })
+            @Html.ValidationMessageFor(model => Model.AppName, null, new {@class = "label label-primary pull-right"})
+        </div>
+        <div class="form-group spacer-2">
+            @Html.LabelFor(model => Model.ConnectionString, new { @class = "label label-primary" })
+            @Html.TextBoxFor(model => Model.AppName, new {@class = "form-control" })
+            @Html.ValidationMessageFor(model => Model.AppName, null, new {@class = "label label-primary pull-right"})
+        </div>
+        <div class="form-group spacer-1">
+            @Html.LabelFor(model => Model.BackgroundImage, new {@class="label label-primary"})
+            <label class="btn btn-default" for="my-file-selector">
+                <input id="my-file-selector" type="file" class="hidden"
+                       onchange="$('#upload-file-info').html(this.files[0].name)">
+                Upload
+            </label>
+            <span class='label label-success' id="upload-file-info"></span>
+        </div>
+        <div class="form-group pull-right">
+            <input id="Save" type="submit" class="btn btn-primary" value="Save"/>
+        </div>
+    </fieldset>
+}
+<div class="row center-block font-10">
+    @if (ViewBag.Result != null && ViewBag.Result == ReturnCode.Error)
+    {
+        <div class="alert alert-danger">
+            @Html.Raw(ViewBag.Error)
+        </div>
+    }
+    @if (ViewBag.Result != null && ViewBag.Result == ReturnCode.Success)
+    {
+        <div class="alert alert-success">
+            @Html.Raw("Profile Modified Successfully")
+        </div>
+    }
+</div>
+
+@section scripts{
+    <script>
+        $(document).keypress(function(e){
+            if (e.which == 13){
+                $("#Save").click();
+            }
+        });        
+    </script>
+
+}

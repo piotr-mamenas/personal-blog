@@ -2,11 +2,9 @@
 using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
-using PersonalBlog.Web.Attributes;
 using PersonalBlog.Web.Core.Domain;
 using PersonalBlog.Web.Core.Repositories;
 using PersonalBlog.Web.Enums;
-using PersonalBlog.Web.Interfaces;
 using PersonalBlog.Web.ViewModels;
 
 namespace PersonalBlog.Web.Controllers
@@ -15,16 +13,10 @@ namespace PersonalBlog.Web.Controllers
     [HandleError]
     public class ProfileController : BaseController
     {
-        private readonly IUserProfileService _userProfileService;
-        private readonly IRepository<Author> _authorRepository;
-        private readonly IRepository<User> _userRepository;
-
-
-        public ProfileController(IRepository<Author> authorRepository, IRepository<User> userRepository, IUserProfileService userProfileService)
+        public ProfileController(IRepository<Author> authorRepository, IRepository<User> userRepository)
         {
             _authorRepository = authorRepository;
             _userRepository = userRepository;
-            _userProfileService = userProfileService;
         }
 
         [Route("profile/save")]
@@ -34,6 +26,7 @@ namespace PersonalBlog.Web.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Result = ReturnCode.Error;
+                ViewBag.Error = "Form is not valid. Please review and try again.";
                 return View("Index",model);
             }
 
@@ -41,6 +34,7 @@ namespace PersonalBlog.Web.Controllers
 
             _authorRepository.Update(author);
 
+            ViewBag.Result = ReturnCode.Success;
             return View("Index", model);
         }
 
@@ -54,7 +48,6 @@ namespace PersonalBlog.Web.Controllers
         public ActionResult Index()
         {
             var authCookie = HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
-            var emptyvar = _userProfileService.GetAuthorizedUserUsername();
 
             if (authCookie == null)
             {
@@ -96,5 +89,8 @@ namespace PersonalBlog.Web.Controllers
 
             return View(Mapper.Map<ProfileViewModel>(linkedAuthor));
         }
+
+        private readonly IRepository<Author> _authorRepository;
+        private readonly IRepository<User> _userRepository;
     }
 }

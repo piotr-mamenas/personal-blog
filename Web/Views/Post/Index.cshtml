@@ -3,39 +3,3 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@Html.AntiForgeryToken()
-<div class="row">
-    <strong class="label label-primary text-primary pull-right">Post Control <span class="fa fa-clipboard"></span></strong>
-</div>
-<div class="row">
-    <h2 style="margin-bottom: 15px;">
-        <a href="@Url.Action("Edit","Post",new { editPostId = 0 })" class="btn btn-sm btn-primary">New Post</a>       
-    </h2>
-</div>
-<div class="row">
-    <table class="table table-bordered table-hover table-striped">
-        <thead>
-            <tr class="bg-primary text-primary">
-                <td>Header</td>
-                <td>Date</td>
-                <td>Edit</td>
-                <td>Delete</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var post in Model)
-            {
-                <tr>
-                    <td>@post.PostTitle</td>
-                    <td>@Html.DisplayFor(x => post.PostDate)</td>
-                    <td>
-                        <a class="col-md-1 btn btn-primary btn-block fa fa-pencil" href="@Url.Action("Edit", "Post", new {editPostId = post.PostId})"></a>
-                    </td>
-                    <td>
-                        <a class="col-md-1 btn btn-primary btn-block fa fa-ban" href="@Url.Action("Delete", "Post", new {deletePostId = post.PostId})"></a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>

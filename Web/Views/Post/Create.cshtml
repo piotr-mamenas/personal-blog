@@ -1,14 +1,14 @@
 ﻿@using PersonalBlog.Web.Enums
 @model PersonalBlog.Web.ViewModels.PostViewModel
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="row">
-    <strong class="label label-primary pull-right">Edit Post <span class="fa fa-clipboard"></span></strong>
+    <strong class="label label-primary pull-right">Create Post <span class="fa fa-clipboard"></span></strong>
 </div>
 @Html.AntiForgeryToken()
-@using (Html.BeginForm("Edit","Post",FormMethod.Post, new {@class="form-horizontal row center-block", @style="padding:15px;"}))
+@using (Html.BeginForm("Create","Post",FormMethod.Post, new {@class="form-horizontal row center-block", @style="padding:15px;"}))
 {
     <fieldset>
         @Html.HiddenFor(model => Model.PostId)
@@ -47,7 +47,7 @@
                 minHeight: null,
                 maxHeight: null,
                 focus: true
-        });
+            });
         });
 
         $(document).keypress(function(e){

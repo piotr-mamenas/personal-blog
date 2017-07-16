@@ -15,11 +15,6 @@ namespace PersonalBlog.Web.Controllers
         /// <summary>
         /// 
         /// </summary>
-        private readonly IRepository<User> _userRepository;
-       
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="userRepository"></param>
         public AuthController(IRepository<User> userRepository)
         {
@@ -147,5 +142,6 @@ namespace PersonalBlog.Web.Controllers
             ViewBag.Error = "Incorrect password entered. Please try again.";
             return View();
         }
+        private readonly IRepository<User> _userRepository;
     }
 }

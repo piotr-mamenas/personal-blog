@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
-using PersonalBlog.Web.Attributes;
 using PersonalBlog.Web.Core.Domain;
 using PersonalBlog.Web.Core.Repositories;
+using PersonalBlog.Web.Enums;
 using PersonalBlog.Web.ViewModels;
 
 namespace PersonalBlog.Web.Controllers
@@ -17,11 +17,6 @@ namespace PersonalBlog.Web.Controllers
     [HandleError]
     public class PostController : BaseController
     {
-        /// <summary>
-        /// Unit of Work
-        /// </summary>
-        private readonly IRepository<Post> _postRepository;
-
         /// <summary>
         /// DI enabled constructor
         /// </summary>
@@ -59,55 +54,11 @@ namespace PersonalBlog.Web.Controllers
         [Route("posts/edit/{editPostId}")]
         public ActionResult Edit(int editPostId)
         {
-            Post currentPost;
-
-            if (editPostId != 0)
-            {
-                currentPost = _postRepository.GetById(editPostId);
-            }
-            else
-            {
-                currentPost = new Post
-                {
-                    PostDate = DateTime.Today,
-                    PostId = 0,
-                    PostTitle = "",
-                    PostBody = ""
-                };
-            }
+            var currentPost = _postRepository.GetById(editPostId);
 
             return View(Mapper.Map<PostViewModel>(currentPost));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        [Route("posts/save")]
-        public ActionResult Save(PostViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("Edit", model);
-            }
-
-            var post = Mapper.Map<Post>(model);
-
-            post.PostDate = DateTime.Today;
-
-            if (post.PostId == 0)
-            {
-                _postRepository.Create(post);
-            }
-            else
-            {
-                _postRepository.Update(post);
-            }
-
-            return RedirectToAction("List");
-        }
-        
         /// <summary>
         /// 
         /// </summary>
@@ -121,14 +72,64 @@ namespace PersonalBlog.Web.Controllers
             switch (action)
             {
                 case "Save":
-                    return RedirectToAction("Save", model);
-                case "Back":
+                {
+                    if (!ModelState.IsValid)
+                    {
+                        ViewBag.Result = ReturnCode.Error;
+                        ViewBag.Error = "Form is not valid. Please review and try again.";
+                        return View("Edit", model);
+                    }
+
+                    var post = Mapper.Map<Post>(model);
+                    post.PostDate = DateTime.Today;
+                    _postRepository.Update(post);
                     return RedirectToAction("List");
+                }
+                case "Back":
+                {
+                    return RedirectToAction("List");
+                }
             }
 
             return View();
         }
 
+        [Route("posts/create")]
+        public ActionResult Create(PostViewModel model)
+        {
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("posts/create")]
+        public ActionResult Create(PostViewModel model, string action)
+        {
+            switch (action)
+            {
+                case "Save":
+                {
+                    if (!ModelState.IsValid)
+                    {
+                        ViewBag.Result = ReturnCode.Error;
+                        ViewBag.Error = "Form is not valid. Please review and try again.";
+                        return View(model);
+                    }
+
+                    var post = Mapper.Map<Post>(model);
+                    post.PostDate = DateTime.Today;
+
+                    _postRepository.Create(post);
+                    return RedirectToAction("List");
+                }
+                case "Back":
+                {
+                    return RedirectToAction("List");
+                }
+            }
+
+            return View();
+        }
+        
         /// <summary>
         /// Method used to delete an existing post
         /// </summary>
@@ -144,5 +145,7 @@ namespace PersonalBlog.Web.Controllers
 
             return RedirectToAction("List");
         }
+
+        private readonly IRepository<Post> _postRepository;
     }
 }
