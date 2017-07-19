@@ -18,7 +18,10 @@ namespace PersonalBlog.Web
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            log4net.Config.XmlConfigurator.Configure();
             TemporaryDatabaseSeeder.Seed();
+            var log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log.Debug("Hello");
 
             if (HttpContext.Current.Session != null)
             {

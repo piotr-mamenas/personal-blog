@@ -1,7 +1,11 @@
 ﻿using System.Web.Mvc;
+using PersonalBlog.Web.Attributes;
 
 namespace PersonalBlog.Web.Controllers
 {
+    [NoCache]
+    [Authorize]
+    [HandleError]
     public class SettingsController : BaseController
     {
         [Route("settings")]

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
+using PersonalBlog.Web.Attributes;
 using PersonalBlog.Web.Core.Domain;
 using PersonalBlog.Web.Core.Repositories;
 using PersonalBlog.Web.Enums;
@@ -9,6 +10,7 @@ using PersonalBlog.Web.ViewModels;
 
 namespace PersonalBlog.Web.Controllers
 {
+    [NoCache]
     [Authorize]
     [HandleError]
     public class ProfileController : BaseController

@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System;
+using System.Linq;
+using System.Web;
 using System.Web.Security;
 using PersonalBlog.Web.Core.Domain;
 using PersonalBlog.Web.Core.Repositories;
@@ -14,6 +16,17 @@ namespace PersonalBlog.Web.Services
             _userRepository = userRepository;
             _authorRepository = authorRepository;
             _context = context;
+        }
+
+        public Exception Login(string username, string password)
+        {
+            return new NotImplementedException();
+        }
+
+        public void Logout()
+        {
+            _context.Session.Clear();
+            FormsAuthentication.SignOut();
         }
 
         public string GetAuthorizedUserUsername()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
+using PersonalBlog.Web.Attributes;
 using PersonalBlog.Web.Core.Domain;
 using PersonalBlog.Web.Core.Repositories;
 using PersonalBlog.Web.Enums;
@@ -13,6 +14,7 @@ namespace PersonalBlog.Web.Controllers
     /// <summary>
     /// Allows CRUD operations on Post and enables actions present in the Post Views
     /// </summary>
+    [NoCache]
     [Authorize]
     [HandleError]
     public class PostController : BaseController
@@ -81,7 +83,7 @@ namespace PersonalBlog.Web.Controllers
                     }
 
                     var post = Mapper.Map<Post>(model);
-                    post.PostDate = DateTime.Today;
+                    post.PostDate = DateTime.Now;
                     _postRepository.Update(post);
                     return RedirectToAction("List");
                 }
@@ -116,7 +118,7 @@ namespace PersonalBlog.Web.Controllers
                     }
 
                     var post = Mapper.Map<Post>(model);
-                    post.PostDate = DateTime.Today;
+                    post.PostDate = DateTime.Now;
 
                     _postRepository.Create(post);
                     return RedirectToAction("List");

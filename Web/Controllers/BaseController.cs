@@ -1,11 +1,9 @@
 ﻿using System.Web.Mvc;
 using Ninject;
-using PersonalBlog.Web.Attributes;
 using PersonalBlog.Web.Core;
 
 namespace PersonalBlog.Web.Controllers
 {
-    [NoCache]
     public class BaseController : Controller
     {
         [Inject]

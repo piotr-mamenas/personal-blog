@@ -8,7 +8,7 @@
       <generator class="native" />
     </id>
     <property name="PostTitle" column="POST_NAME" />
-    <property name="PostBody" column="POST_BODY" />
+    <property name="PostBody" column="POST_BODY" length="2000" />
     <property name="PostDate" column="POST_DATE" />
     <many-to-one name="User"
                  unique="true"
