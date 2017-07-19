@@ -16,7 +16,6 @@ namespace PersonalBlog.Web.Controllers
     /// </summary>
     [NoCache]
     [Authorize]
-    [HandleError]
     public class PostController : BaseController
     {
         /// <summary>

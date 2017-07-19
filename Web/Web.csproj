@@ -229,17 +229,19 @@
     <Compile Include="Attributes\NoCacheAttribute.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Core\Domain\Author.cs" />
+    <Compile Include="Core\Domain\BaseError.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Domain\Post.cs" />
     <Compile Include="Core\Domain\User.cs" />
     <Compile Include="Enums\ReturnCode.cs" />
-    <Compile Include="Facades\ErrorContainerFacade.cs" />
+    <Compile Include="Facades\ErrorHandlingFacade.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -271,12 +273,13 @@
     <Content Include="Views\Post\List.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Error\ApplicationError.cshtml" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
     <None Include="Views\Shared\_Navbar.cshtml" />
     <None Include="Views\Shared\_Footer.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Auth\Login.cshtml" />
-    <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_NavbarAdmin.cshtml" />
     <None Include="Views\Shared\_NavbarAuth.cshtml" />
     <None Include="Views\Shared\_LoginLayout.cshtml" />

@@ -5,7 +5,6 @@ namespace PersonalBlog.Web.Controllers
 {
     [NoCache]
     [Authorize]
-    [HandleError]
     public class SettingsController : BaseController
     {
         [Route("settings")]

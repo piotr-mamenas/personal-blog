@@ -5,7 +5,6 @@ namespace PersonalBlog.Web.Controllers
 {
     [NoCache]
     [Authorize]
-    [HandleError]
     public class TagController : Controller
     {
         [Route("tags")]

@@ -9,7 +9,6 @@ using PersonalBlog.Web.ViewModels;
 
 namespace PersonalBlog.Web.Controllers
 {
-    [HandleError]
     public class AuthController : BaseController
     {
         /// <summary>

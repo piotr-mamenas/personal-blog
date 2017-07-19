@@ -12,7 +12,6 @@ namespace PersonalBlog.Web.Controllers
 {
     [NoCache]
     [Authorize]
-    [HandleError]
     public class ProfileController : BaseController
     {
         public ProfileController(IRepository<Author> authorRepository, IRepository<User> userRepository)
