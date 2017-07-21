@@ -1,6 +1,6 @@
 ﻿namespace PersonalBlog.Web.Enums
 {
-    public enum ReturnCode
+    public enum PageResponseCode
     {
         Success,
         Error,

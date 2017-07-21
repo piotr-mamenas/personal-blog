@@ -41,7 +41,7 @@ namespace PersonalBlog.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Error = "Form is not valid; please review and try again";
+                HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
                 return View("Login");
             }
 
@@ -49,14 +49,14 @@ namespace PersonalBlog.Web.Controllers
 
             if (user == null)
             {
-                ViewBag.Error = "Credentials invalid. Please try again.";
+                HandleResponse(PageResponseCode.Error, ValidationResponseCode.CredentialsInvalid);
                 return View("Login");
             }
 
             if (SecurePasswordHasher.Verify(model.Password,user.PasswordHash))
                 FormsAuthentication.RedirectFromLoginPage(model.Username, true);
 
-            ViewBag.Error = "Credentials invalid. Please try again.";
+            HandleResponse(PageResponseCode.Error, ValidationResponseCode.CredentialsInvalid);
             return View("Login");
         }
 
@@ -84,7 +84,7 @@ namespace PersonalBlog.Web.Controllers
 
             if (authCookie == null)
             {
-                ViewBag.Result = ReturnCode.Error;
+                HandleResponse(PageResponseCode.Error, ValidationResponseCode.CredentialsInvalid);
                 return View();
             }
 
@@ -92,6 +92,7 @@ namespace PersonalBlog.Web.Controllers
 
             if (ticket == null)
             {
+                HandleResponse(PageResponseCode.Error, ValidationResponseCode.CredentialsInvalid);
                 return View();
             }
 
@@ -101,6 +102,7 @@ namespace PersonalBlog.Web.Controllers
 
             if (user == null)
             {
+                HandleResponse(PageResponseCode.Error, ValidationResponseCode.CredentialsInvalid);
                 return View();
             }
 
@@ -119,8 +121,7 @@ namespace PersonalBlog.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Result = ReturnCode.Error;
-                ViewBag.Error = "Form is not valid. Please review and try again.";
+                HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
                 return View();
             }
 
@@ -133,14 +134,17 @@ namespace PersonalBlog.Web.Controllers
                 {
                     user.PasswordHash = SecurePasswordHasher.Hash(model.NewPassword);
                     _userRepository.Update(user);
-                    ViewBag.Result = ReturnCode.Success;
+                    ViewBag.Result = PageResponseCode.Success;
                     return View();
                 }
             }
-            ViewBag.Result = ReturnCode.Error;
-            ViewBag.Error = "Incorrect password entered. Please try again.";
+            HandleResponse(PageResponseCode.Error, ValidationResponseCode.CredentialsInvalid);
             return View();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly IRepository<User> _userRepository;
     }
 }

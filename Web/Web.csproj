@@ -236,17 +236,18 @@
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Core\Domain\Author.cs" />
-    <Compile Include="Core\Domain\BaseError.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Domain\Post.cs" />
     <Compile Include="Core\Domain\User.cs" />
-    <Compile Include="Enums\ReturnCode.cs" />
-    <Compile Include="Facades\ErrorHandlingFacade.cs" />
+    <Compile Include="Enums\ValidationResponseCode.cs" />
+    <Compile Include="Enums\LogEventType.cs" />
+    <Compile Include="Enums\PageResponseCode.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SecurePasswordHasher.cs" />
     <Compile Include="Helpers\TemporaryDatabaseSeeder.cs" />
+    <Compile Include="Interfaces\ILoggingService.cs" />
     <Compile Include="Interfaces\IUserProfileService.cs" />
     <Compile Include="Persistence\Repositories\Repository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
