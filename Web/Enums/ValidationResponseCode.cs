@@ -5,7 +5,8 @@
         FormInvalid,
         CredentialsInvalid,
         HttpError,
-        ProfileChangeSuccesful,
-        PasswordChangeSuccesful
+        ProfileChangeSuccessful,
+        PasswordChangeSuccessful,
+        HashtagCreateSuccessful
     }
 }

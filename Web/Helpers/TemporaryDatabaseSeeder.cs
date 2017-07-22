@@ -17,10 +17,10 @@ namespace PersonalBlog.Web.Helpers
 
             var post = new Post
             {
-                PostDate = DateTime.Today,
-                PostBody = "Post Body",
-                PostTitle = "A titled post",
-                PostId = 1
+                Timestamp = DateTime.Today,
+                Body = "Post Body",
+                Title = "A titled post",
+                Id = 1
             };
             postRepository.Create(post);
 

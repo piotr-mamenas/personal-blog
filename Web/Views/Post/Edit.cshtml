@@ -11,18 +11,18 @@
 @using (Html.BeginForm("Edit","Post",FormMethod.Post, new {@class="form-horizontal row center-block", @style="padding:15px;"}))
 {
     <fieldset>
-        @Html.HiddenFor(model => Model.PostId)
-        @Html.HiddenFor(model => Model.PostDate)
+        @Html.HiddenFor(model => Model.Id)
+        @Html.HiddenFor(model => Model.Timestamp)
         @Html.HiddenFor(model => Model.User)
         <div class="form-group">
-            @Html.LabelFor(model => Model.PostTitle, new { @class = "label label-primary" })
-            @Html.TextBoxFor(model => Model.PostTitle, new {@class = "form-control"})
-            @Html.ValidationMessageFor(model => Model.PostTitle, null, new { @class = "label label-primary pull-right" })
+            @Html.LabelFor(model => Model.Title, new { @class = "label label-primary" })
+            @Html.TextBoxFor(model => Model.Title, new {@class = "form-control"})
+            @Html.ValidationMessageFor(model => Model.Title, null, new { @class = "label label-primary pull-right" })
         </div>
         <br />
         <div class="form-group">
-            @Html.LabelFor(model => Model.PostBody, new { @class = "label label-primary" })
-            @Html.TextAreaFor(model => Model.PostBody, new {@class = "form-control"})
+            @Html.LabelFor(model => Model.Body, new { @class = "label label-primary" })
+            @Html.TextAreaFor(model => Model.Body, new {@class = "form-control"})
         </div>
         <div class="form-group pull-right">
             <input name="action" type="submit" class="btn btn-default" value="Back" />
@@ -42,7 +42,7 @@
 @section scripts {
     <script>
         $(document).ready(function() {
-            $('#PostBody').summernote({
+            $('#Body').summernote({
                 height: 300,
                 minHeight: null,
                 maxHeight: null,

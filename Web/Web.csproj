@@ -216,6 +216,7 @@
     <Content Include="Content\vendor\jquery\jquery-1.9.1.js" />
     <Content Include="Content\vendor\jquery\jquery-1.9.1.min.js" />
     <EmbeddedResource Include="Persistence\Mapping\Author.hbm.xml" />
+    <EmbeddedResource Include="Persistence\Mapping\Tag.hbm.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -236,6 +237,7 @@
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Core\Domain\Author.cs" />
+    <Compile Include="Core\Domain\Tag.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Domain\Post.cs" />
     <Compile Include="Core\Domain\User.cs" />
@@ -277,6 +279,7 @@
     <Content Include="Views\Error\PageNotFound.cshtml" />
     <Content Include="Views\Error\ApplicationError.cshtml" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Tag\_EmptyTablePartial.cshtml" />
     <None Include="Views\Shared\_Navbar.cshtml" />
     <None Include="Views\Shared\_Footer.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
@@ -292,6 +295,7 @@
     <Content Include="Views\Tag\Index.cshtml" />
     <None Include="Views\Post\Edit.cshtml" />
     <None Include="Views\Auth\ChangePassword.cshtml" />
+    <Content Include="Views\Tag\_CreatePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -3,22 +3,29 @@
   <Class Name="PersonalBlog.Web.Core.Domain.Post">
     <Position X="8" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABEAAAAAAAAAAgAAAAAEAAAAAAAAAAA=</HashCode>
+      <HashCode>AAADAAAAAAAAAEAAAAADAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Core\Domain\Post.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PersonalBlog.Web.Core.Domain.Profile">
+  <Class Name="PersonalBlog.Web.Core.Domain.Author">
     <Position X="5.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAADAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAg=</HashCode>
-      <FileName>Core\Domain\Profile.cs</FileName>
+      <HashCode>AAADAEAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Core\Domain\Author.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PersonalBlog.Web.Core.Domain.Authentication.User">
-    <Position X="10.25" Y="1.25" Width="1.5" />
+  <Class Name="PersonalBlog.Web.Core.Domain.User">
+    <Position X="3.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACCAAAAACAAAgAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Core\Domain\Authentication\User.cs</FileName>
+      <HashCode>AACCAAAAACAAAAAAgQAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Domain\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PersonalBlog.Web.Core.Domain.Tag">
+    <Position X="1.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Domain\Tag.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

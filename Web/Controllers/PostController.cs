@@ -81,7 +81,7 @@ namespace PersonalBlog.Web.Controllers
                     }
 
                     var post = Mapper.Map<Post>(model);
-                    post.PostDate = DateTime.Now;
+                    post.Timestamp = DateTime.Now;
                     _postRepository.Update(post);
                     return RedirectToAction("List");
                 }
@@ -94,12 +94,23 @@ namespace PersonalBlog.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("posts/create")]
         public ActionResult Create(PostViewModel model)
         {
             return View(model);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("posts/create")]
         public ActionResult Create(PostViewModel model, string action)
@@ -115,7 +126,7 @@ namespace PersonalBlog.Web.Controllers
                     }
 
                     var post = Mapper.Map<Post>(model);
-                    post.PostDate = DateTime.Now;
+                    post.Timestamp = DateTime.Now;
 
                     _postRepository.Create(post);
                     return RedirectToAction("List");

@@ -4,14 +4,29 @@ namespace PersonalBlog.Web.Core.Domain
 {
     public class Post
     {
-        public virtual int PostId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual int Id { get; set; }
 
-        public virtual string PostTitle { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual string Title { get; set; }
 
-        public virtual string PostBody { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual string Body { get; set; }
 
-        public virtual DateTime PostDate { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual DateTime Timestamp { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual User User { get; set; }
     }
 }

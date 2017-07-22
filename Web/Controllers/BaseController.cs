@@ -89,11 +89,14 @@ namespace PersonalBlog.Web.Controllers
                 case ValidationResponseCode.FormInvalid:
                     ViewBag.Message = "Form is not valid. Please review and try again.";
                     break;
-                case ValidationResponseCode.ProfileChangeSuccesful:
+                case ValidationResponseCode.ProfileChangeSuccessful:
                     ViewBag.Message = "Profile changed successfully.";
                     break;
-                case ValidationResponseCode.PasswordChangeSuccesful:
+                case ValidationResponseCode.PasswordChangeSuccessful:
                     ViewBag.Message = "Password changed successfully";
+                    break;
+                case ValidationResponseCode.HashtagCreateSuccessful:
+                    ViewBag.Message = "Hashtag added!";
                     break;
             }
         }

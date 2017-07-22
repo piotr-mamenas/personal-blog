@@ -10,16 +10,29 @@ using PersonalBlog.Web.ViewModels;
 
 namespace PersonalBlog.Web.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [NoCache]
     [Authorize]
     public class ProfileController : BaseController
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="authorRepository"></param>
+        /// <param name="userRepository"></param>
         public ProfileController(IRepository<Author> authorRepository, IRepository<User> userRepository)
         {
             _authorRepository = authorRepository;
             _userRepository = userRepository;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("profile/save")]
         [HttpPost]
         public ActionResult SaveProfile(ProfileViewModel model)
@@ -34,10 +47,15 @@ namespace PersonalBlog.Web.Controllers
 
             _authorRepository.Update(author);
 
-            HandleResponse(PageResponseCode.Success, ValidationResponseCode.ProfileChangeSuccesful);
+            HandleResponse(PageResponseCode.Success, ValidationResponseCode.ProfileChangeSuccessful);
             return View("Index", model);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("profile/edit")]
         public ActionResult Index(ProfileViewModel model)
         {
@@ -89,7 +107,14 @@ namespace PersonalBlog.Web.Controllers
             return View(Mapper.Map<ProfileViewModel>(linkedAuthor));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly IRepository<Author> _authorRepository;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly IRepository<User> _userRepository;
     }
 }

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Web"
+                   namespace="PersonalBlog.Web.Core.Domain">
+
+  <class name="Tag" table="TAG">
+    <id name="Id" column="TAG_ID" >
+      <generator class="native" />
+    </id>
+    <property name="Name" column="TAG_NAME" />
+    <property name="Description" column="TAG_BODY" length="300" />
+  </class>
+</hibernate-mapping>

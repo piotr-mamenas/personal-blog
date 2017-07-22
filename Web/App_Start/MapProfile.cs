@@ -13,6 +13,7 @@ namespace PersonalBlog.Web
                 cfg.CreateMap<LoginViewModel, User>().ReverseMap();
                 cfg.CreateMap<PostViewModel, Post>().ReverseMap();
                 cfg.CreateMap<ProfileViewModel, Author>().ReverseMap();
+                cfg.CreateMap<TagViewModel, Tag>().ReverseMap();
             });
         }
     }

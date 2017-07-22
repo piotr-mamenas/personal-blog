@@ -17,7 +17,7 @@
         <thead>
         <tr class="bg-primary text-primary">
             <td>Header</td>
-            <td>Date</td>
+            <td>Timestamp</td>
             <td>Edit</td>
             <td>Delete</td>
         </tr>
@@ -26,13 +26,13 @@
         @foreach (var post in Model)
         {
             <tr class="text-primary">
-                <td>@post.PostTitle</td>
-                <td>@Html.DisplayFor(x => post.PostDate)</td>
+                <td>@post.Title</td>
+                <td>@Html.DisplayFor(x => post.Timestamp)</td>
                 <td>
-                    <a class="col-md-1 btn btn-primary btn-block fa fa-pencil" href="@Url.Action("Edit", "Post", new {editPostId = post.PostId})"></a>
+                    <a class="col-md-1 btn btn-primary btn-block fa fa-pencil" href="@Url.Action("Edit", "Post", new {editPostId = post.Id})"></a>
                 </td>
                 <td>
-                    <a class="col-md-1 btn btn-primary btn-block fa fa-ban" href="@Url.Action("Delete", "Post", new {deletePostId = post.PostId})"></a>
+                    <a class="col-md-1 btn btn-primary btn-block fa fa-ban" href="@Url.Action("Delete", "Post", new {deletePostId = post.Id})"></a>
                 </td>
             </tr>
         }

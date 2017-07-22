@@ -4,12 +4,12 @@
                    namespace="PersonalBlog.Web.Core.Domain">
 
   <class name="Post" table="POST">
-    <id name="PostId" column="POST_ID" >
+    <id name="Id" column="POST_ID" >
       <generator class="native" />
     </id>
-    <property name="PostTitle" column="POST_NAME" />
-    <property name="PostBody" column="POST_BODY" length="2000" />
-    <property name="PostDate" column="POST_DATE" />
+    <property name="Title" column="POST_NAME" />
+    <property name="Body" column="POST_BODY" length="2000" />
+    <property name="Timestamp" column="POST_DATE" />
     <many-to-one name="User"
                  unique="true"
                  class="User">
