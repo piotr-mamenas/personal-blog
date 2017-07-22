@@ -134,7 +134,7 @@ namespace PersonalBlog.Web.Controllers
                 {
                     user.PasswordHash = SecurePasswordHasher.Hash(model.NewPassword);
                     _userRepository.Update(user);
-                    ViewBag.Result = PageResponseCode.Success;
+                    HandleResponse(PageResponseCode.Success, ValidationResponseCode.PasswordChangeSuccesful);
                     return View();
                 }
             }

@@ -31,10 +31,10 @@
     </fieldset>
 }
 <div class="row center-block font-10">
-    @if (ViewBag.Result != null && ViewBag.Result == PageResponseCode.Error)
+    @if (ViewBag.Result == PageResponseCode.Error)
     {
         <div class="alert alert-danger">
-            @Html.Raw(ViewBag.Error)
+            @Html.Raw(ViewBag.Message)
         </div>
     }
 </div>

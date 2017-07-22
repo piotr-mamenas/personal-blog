@@ -4,6 +4,8 @@
     {
         FormInvalid,
         CredentialsInvalid,
-        HttpError
+        HttpError,
+        ProfileChangeSuccesful,
+        PasswordChangeSuccesful
     }
 }

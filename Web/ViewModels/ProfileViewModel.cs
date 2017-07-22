@@ -21,7 +21,6 @@ namespace PersonalBlog.Web.ViewModels
         [Required]
         public User User { get; set; }
 
-        [Required]
         [AllowHtml]
         [DisplayName("About Me")]
         public string AuthorDescription { get; set; }

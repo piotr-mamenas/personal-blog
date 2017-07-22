@@ -4,8 +4,15 @@ using System.Web.Mvc;
 
 namespace PersonalBlog.Web.Attributes
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class NoCacheAttribute : ActionFilterAttribute
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterContext"></param>
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             filterContext.HttpContext.Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));

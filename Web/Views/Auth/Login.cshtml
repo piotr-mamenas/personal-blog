@@ -1,4 +1,5 @@
-﻿@model PersonalBlog.Web.ViewModels.LoginViewModel
+﻿@using PersonalBlog.Web.Enums
+@model PersonalBlog.Web.ViewModels.LoginViewModel
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
@@ -33,10 +34,10 @@
                 <br/>
             }
         </div>
-        @if (ViewBag.Error != null)
+        @if (ViewBag.Result == PageResponseCode.Error)
         {
         <div class="form-group alert alert-danger font-10">
-            @Html.Raw(ViewBag.Error)
+            @Html.Raw(ViewBag.Message)
         </div>
         }
     </div>

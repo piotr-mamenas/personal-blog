@@ -76,8 +76,7 @@ namespace PersonalBlog.Web.Controllers
                 {
                     if (!ModelState.IsValid)
                     {
-                        ViewBag.Result = PageResponseCode.Error;
-                        ViewBag.Error = "Form is not valid. Please review and try again.";
+                        HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
                         return View("Edit", model);
                     }
 
@@ -111,8 +110,7 @@ namespace PersonalBlog.Web.Controllers
                 {
                     if (!ModelState.IsValid)
                     {
-                        ViewBag.Result = PageResponseCode.Error;
-                        ViewBag.Error = "Form is not valid. Please review and try again.";
+                        HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
                         return View(model);
                     }
 

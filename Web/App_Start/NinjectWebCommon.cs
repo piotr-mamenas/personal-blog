@@ -8,6 +8,8 @@ using Ninject.Web.Common;
 using PersonalBlog.Web;
 using PersonalBlog.Web.Core;
 using PersonalBlog.Web.Persistence;
+using PersonalBlog.Web.Services;
+using PersonalBlog.Web.Interfaces;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
@@ -65,10 +67,12 @@ namespace PersonalBlog.Web
         private static void RegisterServices(IBindingRoot kernel)
         {
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            kernel.Bind<ILoggingService>().To<LoggingService>().InRequestScope();
 
             kernel.Bind(x => x.FromAssembliesMatching("*")
                 .SelectAllClasses()
                 .Excluding<UnitOfWork>()
+                .Excluding<LoggingService>()
                 .BindDefaultInterface());
         }        
     }

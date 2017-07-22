@@ -26,8 +26,7 @@ namespace PersonalBlog.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Result = PageResponseCode.Error;
-                ViewBag.Error = "Form is not valid. Please review and try again.";
+                HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
                 return View("Index",model);
             }
 
@@ -35,7 +34,7 @@ namespace PersonalBlog.Web.Controllers
 
             _authorRepository.Update(author);
 
-            ViewBag.Result = PageResponseCode.Success;
+            HandleResponse(PageResponseCode.Success, ValidationResponseCode.ProfileChangeSuccesful);
             return View("Index", model);
         }
 
@@ -52,7 +51,6 @@ namespace PersonalBlog.Web.Controllers
 
             if (authCookie == null)
             {
-                ViewBag.Result = PageResponseCode.Error;
                 return View();
             }
 

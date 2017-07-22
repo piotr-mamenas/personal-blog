@@ -6,17 +6,27 @@ using PersonalBlog.Web.Interfaces;
 
 namespace PersonalBlog.Web.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class BaseController : Controller
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [Inject]
         public IUnitOfWork UnitOfWork { get; set; }
 
         /// <summary>
-        /// TODO: THIS IS NOT INJECTING AS IT SHOULD, MIGHT HAVE TO PULL IT OUT TO SOMETHING EXTERNAL
+        /// 
         /// </summary>
         [Inject]
-        protected ILoggingService LoggingService { get; set; }
+        public ILoggingService LoggingService { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterContext"></param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (!filterContext.IsChildAction)
@@ -25,6 +35,10 @@ namespace PersonalBlog.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterContext"></param>
         protected override void OnResultExecuted(ResultExecutedContext filterContext)
         {
             if (!filterContext.IsChildAction)
@@ -33,6 +47,12 @@ namespace PersonalBlog.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageResponseCode"></param>
+        /// <param name="validationResponseCode"></param>
+        /// <param name="message"></param>
         protected void HandleResponse(PageResponseCode pageResponseCode, ValidationResponseCode validationResponseCode, string message)
         {
             ViewBag.Result = pageResponseCode;
@@ -42,6 +62,11 @@ namespace PersonalBlog.Web.Controllers
             ViewBag.ErrorMessage = message;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageResponseCode"></param>
+        /// <param name="validationResponseCode"></param>
         protected void HandleResponse(PageResponseCode pageResponseCode, ValidationResponseCode validationResponseCode)
         {
             ViewBag.Result = pageResponseCode;
@@ -49,16 +74,26 @@ namespace PersonalBlog.Web.Controllers
             SetValidationMessage(validationResponseCode);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="validationResponseCode"></param>
         private void SetValidationMessage(ValidationResponseCode validationResponseCode)
         {
             switch (validationResponseCode)
             {
                 case ValidationResponseCode.CredentialsInvalid:
                     LoggingService.Debug("Login failed. Username or Password provided was invalid");
-                    ViewBag.ErrorMessage("Credentials provided invalid. Please review and try again.");
+                    ViewBag.Message = "Credentials provided invalid. Please review and try again.";
                     break;
                 case ValidationResponseCode.FormInvalid:
-                    ViewBag.ErrorMessage = "Form is not valid. Please review and try again.";
+                    ViewBag.Message = "Form is not valid. Please review and try again.";
+                    break;
+                case ValidationResponseCode.ProfileChangeSuccesful:
+                    ViewBag.Message = "Profile changed successfully.";
+                    break;
+                case ValidationResponseCode.PasswordChangeSuccesful:
+                    ViewBag.Message = "Password changed successfully";
                     break;
             }
         }
