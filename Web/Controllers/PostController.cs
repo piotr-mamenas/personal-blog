@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using AutoMapper;
 using PersonalBlog.Web.Attributes;
@@ -22,9 +24,10 @@ namespace PersonalBlog.Web.Controllers
         /// DI enabled constructor
         /// </summary>
         /// <param name="postRepository"></param>
-        public PostController(IRepository<Post> postRepository)
+        public PostController(IRepository<Post> postRepository, IRepository<Tag> tagRepository)
         {
             _postRepository = postRepository;
+            _tagRepository = tagRepository;
         }
 
         /// <summary>
@@ -55,9 +58,19 @@ namespace PersonalBlog.Web.Controllers
         [Route("posts/edit/{editPostId}")]
         public ActionResult Edit(int editPostId)
         {
-            var currentPost = _postRepository.GetById(editPostId);
+            var post = _postRepository.GetById(editPostId);
 
-            return View(Mapper.Map<PostViewModel>(currentPost));
+            var postTags = _tagRepository.GetAll().Where(t => t.Posts.Contains(post));
+            var tagString = new StringBuilder();
+
+            foreach (var tag in postTags)
+            {
+               tagString.Append(" #" + tag.Name);
+            }
+            
+            var model = Mapper.Map<PostViewModel>(post);
+            model.TagsString = tagString.ToString();
+            return View(model);
         }
 
         /// <summary>
@@ -73,25 +86,30 @@ namespace PersonalBlog.Web.Controllers
             switch (action)
             {
                 case "Save":
-                {
-                    if (!ModelState.IsValid)
                     {
-                        HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
-                        return View("Edit", model);
+                        if (!ModelState.IsValid)
+                        {
+                            HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
+                            return View("Edit", model);
+                        }
+
+                        var post = Mapper.Map<Post>(model);
+                        post.Timestamp = DateTime.Now;
+                        post.Tags = GetTagsFromTagsString(model.TagsString, true);
+                        _postRepository.Update(post);
+
+                        return RedirectToAction("List");
+                    }
+                case "Back":
+                    {
+                        return RedirectToAction("List");
                     }
 
-                    var post = Mapper.Map<Post>(model);
-                    post.Timestamp = DateTime.Now;
-                    _postRepository.Update(post);
-                    return RedirectToAction("List");
-                }
-                case "Back":
+                default:
                 {
-                    return RedirectToAction("List");
+                    return new HttpNotFoundResult();
                 }
             }
-
-            return View();
         }
 
         /// <summary>
@@ -118,28 +136,32 @@ namespace PersonalBlog.Web.Controllers
             switch (action)
             {
                 case "Save":
-                {
-                    if (!ModelState.IsValid)
                     {
-                        HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
-                        return View(model);
+                        if (!ModelState.IsValid)
+                        {
+                            HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
+                            return View(model);
+                        }
+
+                        var post = Mapper.Map<Post>(model);
+                        post.Timestamp = DateTime.Now;
+                        post.Tags = GetTagsFromTagsString(model.TagsString, true);
+
+                        _postRepository.Create(post);
+                        return RedirectToAction("List");
+                    }
+                case "Back":
+                    {
+                        return RedirectToAction("List");
                     }
 
-                    var post = Mapper.Map<Post>(model);
-                    post.Timestamp = DateTime.Now;
-
-                    _postRepository.Create(post);
-                    return RedirectToAction("List");
-                }
-                case "Back":
+                default:
                 {
-                    return RedirectToAction("List");
+                    return new HttpNotFoundResult();
                 }
             }
-
-            return View();
         }
-        
+
         /// <summary>
         /// Method used to delete an existing post
         /// </summary>
@@ -156,6 +178,47 @@ namespace PersonalBlog.Web.Controllers
             return RedirectToAction("List");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tagsString"></param>
+        /// <param name="createTagIfNotFound"></param>
+        /// <returns></returns>
+        private IEnumerable<Tag> GetTagsFromTagsString(string tagsString, bool createTagIfNotFound)
+        {
+            var tagList = new List<Tag>();
+
+            var regex = new Regex(@"(?<=#)\w+");
+            var hashtags = regex.Matches(tagsString);
+
+            foreach (Match hashtag in hashtags)
+            {
+                var selectedTag = _tagRepository.GetAll().SingleOrDefault(t => t.Name == hashtag.Value);
+
+                if (selectedTag != null)
+                {
+                    tagList.Add(selectedTag);
+                }
+                else
+                {
+                    if (createTagIfNotFound)
+                    {
+                        selectedTag = new Tag
+                        {
+                            Description = "",
+                            Name = hashtag.Value
+                        };
+
+                        _tagRepository.Create(selectedTag);
+
+                        tagList.Add(selectedTag);
+                    }
+                }
+            }
+            return tagList;
+        }
+
         private readonly IRepository<Post> _postRepository;
+        private readonly IRepository<Tag> _tagRepository;
     }
 }

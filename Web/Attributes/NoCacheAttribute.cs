@@ -4,24 +4,22 @@ using System.Web.Mvc;
 
 namespace PersonalBlog.Web.Attributes
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class NoCacheAttribute : ActionFilterAttribute
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
+    public sealed class NoCacheAttribute : FilterAttribute, IResultFilter
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="filterContext"></param>
-        public override void OnResultExecuting(ResultExecutingContext filterContext)
+        public void OnResultExecuting(ResultExecutingContext filterContext)
         {
-            filterContext.HttpContext.Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
-            filterContext.HttpContext.Response.Cache.SetValidUntilExpires(false);
-            filterContext.HttpContext.Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
-            filterContext.HttpContext.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            filterContext.HttpContext.Response.Cache.SetNoStore();
+        }
 
-            base.OnResultExecuting(filterContext);
+        public void OnResultExecuted(ResultExecutedContext filterContext)
+        {
+            var cache = filterContext.HttpContext.Response.Cache;
+            cache.SetCacheability(HttpCacheability.NoCache);
+            cache.SetRevalidation(HttpCacheRevalidation.ProxyCaches);
+            cache.SetExpires(DateTime.Now.AddYears(-5));
+            cache.AppendCacheExtension("private");
+            cache.AppendCacheExtension("no-cache=Set-Cookie");
+            cache.SetProxyMaxAge(TimeSpan.Zero);
         }
     }
 }

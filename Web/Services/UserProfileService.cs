@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web;
 using System.Web.Security;
 using PersonalBlog.Web.Core.Domain;

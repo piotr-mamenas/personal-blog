@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\site-background.jpg" />
+    <Content Include="Content\scripts\substringMatcher.js" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />
@@ -193,6 +194,7 @@
     <Content Include="Content\vendor\summernote\summernote.css" />
     <Content Include="Content\vendor\summernote\summernote.js" />
     <Content Include="Content\vendor\summernote\summernote.min.js" />
+    <Content Include="Content\vendor\typeahead\typeahead.js" />
     <Content Include="Global.asax" />
     <Content Include="Design\Schema.cd" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-theme.css.map" />

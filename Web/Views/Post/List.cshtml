@@ -17,6 +17,7 @@
         <thead>
         <tr class="bg-primary text-primary">
             <td>Header</td>
+            <td>Tags</td>
             <td>Timestamp</td>
             <td>Edit</td>
             <td>Delete</td>
@@ -27,7 +28,8 @@
         {
             <tr class="text-primary">
                 <td>@post.Title</td>
-                <td>@Html.DisplayFor(x => post.Timestamp)</td>
+                <td>@Html.DisplayFor(p => post.TagsString)</td>
+                <td>@Html.DisplayFor(p => post.Timestamp)</td>
                 <td>
                     <a class="col-md-1 btn btn-primary btn-block fa fa-pencil" href="@Url.Action("Edit", "Post", new {editPostId = post.Id})"></a>
                 </td>

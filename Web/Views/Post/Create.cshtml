@@ -21,6 +21,11 @@
         </div>
         <br />
         <div class="form-group">
+            @Html.LabelFor(model => Model.TagsString, new { @class= "label label-primary" })
+            @Html.TextBoxFor(model => Model.TagsString, new {@class = "form-control typeahead"})
+        </div>
+        <br />
+        <div class="form-group">
             @Html.LabelFor(model => Model.Body, new { @class = "label label-primary" })
             @Html.TextAreaFor(model => Model.Body, new {@class = "form-control"})
         </div>
@@ -42,18 +47,30 @@
 @section scripts {
     <script>
         $(document).ready(function() {
+            var placeholderTags = ['C#', '.NET', 'Hello'];
+
             $('#Body').summernote({
                 height: 300,
                 minHeight: null,
                 maxHeight: null,
                 focus: true
             });
-        });
 
-        $(document).keypress(function(e){
-            if (e.which == 13){
-                $("#Save").click();
-            }
+            $('#TagsString' .typeahead).typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                },
+                {
+                    name: 'TagsString',
+                    source: substringMatcher(placeholderTags)
+                });
+
+            $(document).keypress(function(e) {
+                if (e.which == 13) {
+                    $("#Save").click();
+                }
+            });
         });
     </script>
 }

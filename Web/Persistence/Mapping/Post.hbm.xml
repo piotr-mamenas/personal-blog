@@ -15,5 +15,9 @@
                  class="User">
       <column name="USER_ID"/>
     </many-to-one>
+    <bag name="Tags" table="POST_TAG">
+      <key column="POST_ID" />
+      <many-to-many class="Tag" column="TAG_ID" />
+    </bag>
   </class>
 </hibernate-mapping>

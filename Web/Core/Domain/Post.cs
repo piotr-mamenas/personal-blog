@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PersonalBlog.Web.Core.Domain
 {
@@ -28,5 +29,10 @@ namespace PersonalBlog.Web.Core.Domain
         /// 
         /// </summary>
         public virtual User User { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual IEnumerable<Tag> Tags { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace PersonalBlog.Web
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             log4net.Config.XmlConfigurator.Configure();
             TemporaryDatabaseSeeder.Seed();
 

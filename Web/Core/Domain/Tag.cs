@@ -1,4 +1,6 @@
-﻿namespace PersonalBlog.Web.Core.Domain
+﻿using System.Collections.Generic;
+
+namespace PersonalBlog.Web.Core.Domain
 {
     public class Tag
     {
@@ -16,5 +18,10 @@
         /// 
         /// </summary>
         public virtual string Description { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual IEnumerable<Post> Posts { get; set; }
     }
 }

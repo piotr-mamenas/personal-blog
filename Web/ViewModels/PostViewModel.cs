@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
@@ -23,5 +24,8 @@ namespace PersonalBlog.Web.ViewModels
         public DateTime Timestamp { get; set; }
 
         public User User { get; set; }
+
+        [DisplayName("Tags")]
+        public string TagsString { get; set; }
     }
 }

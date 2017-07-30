@@ -21,6 +21,11 @@
         </div>
         <br />
         <div class="form-group">
+            @Html.LabelFor(model => Model.TagsString, new { @class = "label label-primary" })
+            @Html.TextBoxFor(model => Model.TagsString, new { @class = "form-control" })
+        </div>
+        <br />
+        <div class="form-group">
             @Html.LabelFor(model => Model.Body, new { @class = "label label-primary" })
             @Html.TextAreaFor(model => Model.Body, new {@class = "form-control"})
         </div>
