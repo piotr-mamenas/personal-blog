@@ -9,9 +9,9 @@
     </id>
     <property name="Name" column="TAG_NAME" />
     <property name="Description" column="TAG_BODY" length="300" />
-    <bag name="Posts" table="POST_TAG" inverse="true">
+    <bag name="Posts" table="POST_TAG" inverse="true" lazy="false">
       <key column="TAG_ID" />
-      <many-to-many class="Post" column="POST_ID" />
+      <many-to-many class="Post" column="POST_ID" foreign-key="none" fetch="join" />
     </bag>
   </class>
 </hibernate-mapping>
