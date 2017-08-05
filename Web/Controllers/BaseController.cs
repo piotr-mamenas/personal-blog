@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Ninject;
-using PersonalBlog.Web.Attributes;
 using PersonalBlog.Web.Core;
 using PersonalBlog.Web.Enums;
 using PersonalBlog.Web.Interfaces;
@@ -10,7 +9,6 @@ namespace PersonalBlog.Web.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [NoCache]
     public abstract class BaseController : Controller
     {
         /// <summary>

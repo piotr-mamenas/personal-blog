@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using AutoMapper;
-using PersonalBlog.Web.Attributes;
 using PersonalBlog.Web.Core.Domain;
 using PersonalBlog.Web.Core.Repositories;
 using PersonalBlog.Web.Enums;
@@ -16,7 +15,6 @@ namespace PersonalBlog.Web.Controllers
     /// <summary>
     /// Allows CRUD operations on Post and enables actions present in the Post Views
     /// </summary>
-    [NoCache]
     [Authorize]
     public class PostController : BaseController
     {
@@ -188,7 +186,13 @@ namespace PersonalBlog.Web.Controllers
         {
             var tagList = new List<Tag>();
 
+            if (tagsString == null)
+            {
+                HandleResponse(PageResponseCode.Error,ValidationResponseCode.FormInvalid);
+            }
+
             var regex = new Regex(@"(?<=#)\w+");
+            
             var hashtags = regex.Matches(tagsString);
 
             foreach (Match hashtag in hashtags)

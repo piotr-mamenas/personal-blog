@@ -1,12 +1,10 @@
 ﻿using System.Web.Mvc;
-using PersonalBlog.Web.Attributes;
 
 namespace PersonalBlog.Web.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
-    [NoCache]
     [Authorize]
     public class SettingsController : BaseController
     {

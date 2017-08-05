@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
-using PersonalBlog.Web.Attributes;
 using PersonalBlog.Web.Core.Domain;
 using PersonalBlog.Web.Core.Repositories;
 using PersonalBlog.Web.Enums;
@@ -13,7 +12,6 @@ namespace PersonalBlog.Web.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [NoCache]
     [Authorize]
     public class TagController : BaseController
     {

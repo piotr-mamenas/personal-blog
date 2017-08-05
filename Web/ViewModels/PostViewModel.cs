@@ -25,6 +25,7 @@ namespace PersonalBlog.Web.ViewModels
 
         public User User { get; set; }
 
+        [Required]
         [DisplayName("Tags")]
         public string TagsString { get; set; }
     }
