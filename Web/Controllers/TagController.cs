@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
+using NHibernate.Mapping;
 using PersonalBlog.Web.Core.Domain;
 using PersonalBlog.Web.Core.Repositories;
 using PersonalBlog.Web.Enums;
@@ -26,9 +27,14 @@ namespace PersonalBlog.Web.Controllers
         [Route("tags")]
         public ActionResult Index()
         {
-            var model = _tagRepository.GetAll().ToList();
+            var modelList = _tagRepository.GetAll().ToList();
+            var model = new TagViewModel();
 
-            return View(Mapper.Map<IEnumerable<Tag>,IEnumerable<TagViewModel>>(model));
+            var modelCollection = new ViewModelCollection();
+            modelCollection.AddModel(Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(modelList));
+            modelCollection.AddModel(model);
+
+            return View(modelCollection);
         }
 
         /// <summary>
@@ -54,7 +60,7 @@ namespace PersonalBlog.Web.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="deleteTagId"></param>
         /// <returns></returns>
         [Route("tags/delete/{deleteTagId}")]
         public ActionResult Delete(int deleteTagId)

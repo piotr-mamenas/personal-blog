@@ -10,7 +10,7 @@
     <property name="Username" column="USR_USERNAME" />
     <property name="Email" column="USR_EMAIL" />
     <property name="PasswordHash" column="USR_PASSWORD" />
-
+    <property name="IsRememberPasswordChecked" column="USR_REMEMBER_PASSWORD" />
     <one-to-one name="Author"
                 class="Author"
                 foreign-key="none" />

@@ -2,9 +2,6 @@
 
 namespace PersonalBlog.Web.Controllers
 {
-    /// <summary>
-    /// 
-    /// </summary>
     [Authorize]
     public class SettingsController : BaseController
     {

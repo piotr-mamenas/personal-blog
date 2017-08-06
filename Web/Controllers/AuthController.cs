@@ -53,8 +53,10 @@ namespace PersonalBlog.Web.Controllers
                 return View("Login");
             }
 
-            if (SecurePasswordHasher.Verify(model.Password,user.PasswordHash))
+            if (SecurePasswordHasher.Verify(model.Password, user.PasswordHash))
+            {
                 FormsAuthentication.RedirectFromLoginPage(model.Username, true);
+            }
 
             HandleResponse(PageResponseCode.Error, ValidationResponseCode.CredentialsInvalid);
             return View("Login");

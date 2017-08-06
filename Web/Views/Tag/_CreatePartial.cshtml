@@ -1,47 +1,5 @@
 ﻿@model PersonalBlog.Web.ViewModels.TagViewModel
 @using PersonalBlog.Web.Enums
 
-@Html.AntiForgeryToken()
-@using (Html.BeginForm("Create", "Tag", FormMethod.Post, new { @class = "form-inline center-block", @style="margin-bottom: 15px;"}))
-{
-    <fieldset>
-        <div class="row">
-            @Html.HiddenFor(q => Model.Id)
-            <div class="form-group">
-                <div class="col-md-3">
-                    @Html.TextBoxFor(q => Model.Name, new {@class = "form-control", @placeholder = "#", @Id="Hashtag"})
-                    @Html.ValidationMessageFor(q => Model.Name, null, new {@class = "label label-primary pull-right"})
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-5">
-                    @Html.TextBoxFor(q => Model.Description, new { @class = "form-control", @placeholder = "Description" })
-                    @Html.ValidationMessageFor(q => Model.Description, null, new { @class = "label label-primary pull-right" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2">
-                    <input id="Add" type="submit" class="btn btn-primary" value="Add" />
-                </div>            
-            </div>
-            <div class="form-group">
-                <div class="col-md-2">
-                    @if (ViewBag.Result == PageResponseCode.Error)
-                    {
-                        <div class="alert alert-danger">
-                            @Html.Raw(ViewBag.Message)
-                        </div>
-                    }
 
-                    @if (ViewBag.Result == PageResponseCode.Success)
-                    {
-                        <div class="alert alert-success">
-                            @Html.Raw(ViewBag.Message)
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>        
-    </fieldset>
-}
         

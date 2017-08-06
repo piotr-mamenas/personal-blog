@@ -251,7 +251,6 @@
     <Compile Include="Helpers\SecurePasswordHasher.cs" />
     <Compile Include="Helpers\TemporaryDatabaseSeeder.cs" />
     <Compile Include="Interfaces\ILoggingService.cs" />
-    <Compile Include="Interfaces\IUserProfileService.cs" />
     <Compile Include="Persistence\Repositories\Repository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -262,13 +261,13 @@
     </Compile>
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Services\LoggingService.cs" />
-    <Compile Include="Services\UserProfileService.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PostViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\AppSettingsViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

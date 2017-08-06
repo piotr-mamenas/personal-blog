@@ -10,6 +10,7 @@ namespace PersonalBlog.Web.ViewModels
         
         [Required]
         [DisplayName("#")]
+        [RegularExpression(@"^[^# ]+$", ErrorMessage = "The character '#' and spaces are not allowed")]
         public string Name { get; set; }
 
         [Required]

@@ -15,7 +15,7 @@
                  class="User">
       <column name="USER_ID"/>
     </many-to-one>
-    <bag name="Tags" table="POST_TAG">
+    <bag name="Tags" table="POST_TAG" cascade="none" >
       <key column="POST_ID" />
       <many-to-many class="Tag" column="TAG_ID" />
     </bag>

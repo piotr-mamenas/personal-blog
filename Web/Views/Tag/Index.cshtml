@@ -1,5 +1,6 @@
-﻿@using PersonalBlog.Web.ViewModels
-@model IEnumerable<TagViewModel>
+﻿@using PersonalBlog.Web.Enums
+@using PersonalBlog.Web.ViewModels
+@model ViewModelCollection
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -8,7 +9,49 @@
     <strong class="label label-primary pull-right">Tag Control <span class="fa fa-hashtag"></span></strong>
 </div>
 
-@Html.Partial("_CreatePartial", new TagViewModel())
+<div class="row">
+    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Create", "Tag", FormMethod.Post, new { @class = "form-inline center-block", @style="margin-bottom: 15px;"}))
+    {
+        <fieldset>
+            @Html.HiddenFor(q => Model.GetModel<TagViewModel>().Id)
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.TextBoxFor(q => Model.GetModel<TagViewModel>().Name, new {@class = "form-control", @placeholder = "#", @Id="Hashtag"})
+                    @Html.ValidationMessageFor(q => Model.GetModel<TagViewModel>().Name, null, new {@class = "label label-primary pull-right"})
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-5">
+                    @Html.TextBoxFor(q => Model.GetModel<TagViewModel>().Description, new { @class = "form-control", @placeholder = "Description" })
+                    @Html.ValidationMessageFor(q => Model.GetModel<TagViewModel>().Description, null, new { @class = "label label-primary pull-right" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <input id="Add" type="submit" class="btn btn-primary" value="Add" />
+                </div>            
+            </div>
+        </fieldset>
+    } 
+    <div class="form-group">
+        <div class="col-md-2">
+            @if (ViewBag.Result == PageResponseCode.Error)
+            {
+                <div class="alert alert-danger">
+                    @Html.Raw(ViewBag.Message)
+                </div>
+            }
+
+            @if (ViewBag.Result == PageResponseCode.Success)
+            {
+                <div class="alert alert-success">
+                    @Html.Raw(ViewBag.Message)
+                </div>
+            }
+        </div>
+    </div>  
+</div>
 
 @if (Model == null)
 {
@@ -26,7 +69,7 @@ else
             </tr>
             </thead>
             <tbody>
-            @foreach (var tag in Model)
+            @foreach (var tag in Model.GetModel<List<TagViewModel>>())
             {
                 <tr class="text-primary">
                     <td>@Html.DisplayFor(q => tag.Name)</td>
