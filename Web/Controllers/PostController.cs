@@ -58,17 +58,21 @@ namespace PersonalBlog.Web.Controllers
         {
             var post = _postRepository.GetById(editPostId);
 
-            var postTags = _tagRepository.GetAll().Where(t => t.Posts.Contains(post));
-            var tagString = new StringBuilder();
-
-            foreach (var tag in postTags)
+            if (editPostId != 0)
             {
-               tagString.Append(" #" + tag.Name);
+                var postTags = _tagRepository.GetAll().Where(t => t.Posts.Contains(post));
+                var tagString = new StringBuilder();
+
+                foreach (var tag in postTags)
+                {
+                    tagString.Append(" #" + tag.Name);
+                }
+
+                var model = Mapper.Map<PostViewModel>(post);
+                model.TagsString = tagString.ToString();
+                return View(model);
             }
-            
-            var model = Mapper.Map<PostViewModel>(post);
-            model.TagsString = tagString.ToString();
-            return View(model);
+            return View(new PostViewModel());
         }
 
         /// <summary>
@@ -94,58 +98,16 @@ namespace PersonalBlog.Web.Controllers
                         var post = Mapper.Map<Post>(model);
                         post.Timestamp = DateTime.Now;
                         post.Tags = GetTagsFromTagsString(model.TagsString, true);
-                        _postRepository.Update(post);
 
-                        return RedirectToAction("List");
-                    }
-                case "Back":
-                    {
-                        return RedirectToAction("List");
-                    }
-
-                default:
-                {
-                    return new HttpNotFoundResult();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        [Route("posts/create")]
-        public ActionResult Create(PostViewModel model)
-        {
-            return View(model);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <param name="action"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("posts/create")]
-        public ActionResult Create(PostViewModel model, string action)
-        {
-            switch (action)
-            {
-                case "Save":
-                    {
-                        if (!ModelState.IsValid)
+                        if (model.Id == 0)
                         {
-                            HandleResponse(PageResponseCode.Error, ValidationResponseCode.FormInvalid);
-                            return View(model);
+                            _postRepository.Create(post);
+                        }
+                        else
+                        {
+                            _postRepository.Update(post);
                         }
 
-                        var post = Mapper.Map<Post>(model);
-                        post.Timestamp = DateTime.Now;
-                        post.Tags = GetTagsFromTagsString(model.TagsString, true);
-
-                        _postRepository.Create(post);
                         return RedirectToAction("List");
                     }
                 case "Back":
@@ -189,6 +151,7 @@ namespace PersonalBlog.Web.Controllers
             if (tagsString == null)
             {
                 HandleResponse(PageResponseCode.Error,ValidationResponseCode.FormInvalid);
+                return null;
             }
 
             var regex = new Regex(@"(?<=#)\w+");

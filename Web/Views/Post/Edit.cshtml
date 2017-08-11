@@ -8,7 +8,7 @@
     <strong class="label label-primary pull-right">Edit Post <span class="fa fa-clipboard"></span></strong>
 </div>
 @Html.AntiForgeryToken()
-@using (Html.BeginForm("Edit","Post",FormMethod.Post, new {@class="form-horizontal row center-block", @style="padding:15px;"}))
+@using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { @class = "form-horizontal row center-block", @style = "padding:15px;" }))
 {
     <fieldset>
         @Html.HiddenFor(model => Model.Id)
@@ -16,22 +16,24 @@
         @Html.HiddenFor(model => Model.User)
         <div class="form-group">
             @Html.LabelFor(model => Model.Title, new { @class = "label label-primary" })
-            @Html.TextBoxFor(model => Model.Title, new {@class = "form-control"})
+            @Html.TextBoxFor(model => Model.Title, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => Model.Title, null, new { @class = "label label-primary pull-right" })
         </div>
         <br />
         <div class="form-group">
             @Html.LabelFor(model => Model.TagsString, new { @class = "label label-primary" })
-            @Html.TextBoxFor(model => Model.TagsString, new { @class = "form-control" })
+            @Html.TextBoxFor(model => Model.TagsString, new { @class = "form-control typeahead" })
+            @Html.ValidationMessageFor(model => Model.TagsString, null, new { @class = "label label-primary pull-right" })
         </div>
         <br />
         <div class="form-group">
             @Html.LabelFor(model => Model.Body, new { @class = "label label-primary" })
-            @Html.TextAreaFor(model => Model.Body, new {@class = "form-control"})
+            @Html.TextAreaFor(model => Model.Body, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => Model.Body, null, new { @class = "label label-primary pull-right" })
         </div>
         <div class="form-group pull-right">
             <input name="action" type="submit" class="btn btn-default" value="Back" />
-            <input id="Save" name="action" type="submit" class="btn btn-primary" value="Save"/>
+            <input id="Save" name="action" type="submit" class="btn btn-primary" value="Save" />
         </div>
     </fieldset>
 }
@@ -46,19 +48,31 @@
 
 @section scripts {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+            var placeholderTags = ['C#', '.NET', 'Hello'];
+
             $('#Body').summernote({
                 height: 300,
                 minHeight: null,
                 maxHeight: null,
                 focus: true
-        });
-        });
+            });
 
-        $(document).keypress(function(e){
-            if (e.which == 13){
-                $("#Save").click();
-            }
+            $('#TagsString'.typeahead).typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+                {
+                    name: 'TagsString',
+                    source: substringMatcher(placeholderTags)
+                });
+
+            $(document).keypress(function (e) {
+                if (e.which == 13) {
+                    $("#Save").click();
+                }
+            });
         });
     </script>
 }

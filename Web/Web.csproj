@@ -275,7 +275,6 @@
     <Content Include="Content\vendor\jquery\jquery-1.9.1.min.map" />
     <Content Include="Views\Post\List.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
-    <Content Include="Views\Post\Create.cshtml" />
     <Content Include="Views\Error\PageNotFound.cshtml" />
     <Content Include="Views\Error\ApplicationError.cshtml" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
@@ -295,7 +294,6 @@
     <Content Include="Views\Tag\Index.cshtml" />
     <None Include="Views\Post\Edit.cshtml" />
     <None Include="Views\Auth\ChangePassword.cshtml" />
-    <Content Include="Views\Tag\_CreatePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -53,7 +53,7 @@
     </div>  
 </div>
 
-@if (Model == null)
+@if (Model.GetModel<List<TagViewModel>>().Count == 0)
 {
     @RenderPage("_EmptyTablePartial.cshtml")
 }
