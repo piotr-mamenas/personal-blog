@@ -22,6 +22,7 @@ namespace PersonalBlog.Web.Controllers
         /// DI enabled constructor
         /// </summary>
         /// <param name="postRepository"></param>
+        /// <param name="tagRepository"></param>
         public PostController(IRepository<Post> postRepository, IRepository<Tag> tagRepository)
         {
             _postRepository = postRepository;
