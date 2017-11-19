@@ -1,6 +1,6 @@
 # personal-blog
 #
-###### This is an example app that I built to fill in the gaps for a project that was starting. Its a modern MVC 5 application with serverside validation based on bootstrap hooked up through a unit of work generic repository to nHibernate connected with Oracle driver to Oracle DB (Oracle DB 11g). The authentication is simple forms authentication with no role scope. For lose coupling and testability the repositories are injected into controllers with Ninject. Username is admin, Password is admin.
+This is an example app that I built to fill in the gaps for a project that was starting. Its a modern MVC 5 application with serverside validation based on bootstrap hooked up through a unit of work generic repository to nHibernate connected with Oracle driver to Oracle DB (Oracle DB 11g). The authentication is simple forms authentication with no role scope. For lose coupling and testability the repositories are injected into controllers with Ninject. Username is admin, Password is admin.
 #
 ### Architectural Notes:
 * .hbm mappings are a planned constraint of this exercise, for new projects this should be avoided in favour of Fluent nHibernate Code First mapping
